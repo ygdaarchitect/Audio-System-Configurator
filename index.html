@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Audio System & Power Configurator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for modern tech look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-content">
+            <h1>🔊 AudioConfig Pro</h1>
+            <p>Advanced Car Audio Power & Impedance Calculator</p>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Control Panel / Component Selection -->
+        <section class="panel controls-panel">
+            <h2>Select Components</h2>
+            
+            <div class="form-group">
+                <label for="vehicleSelect">Vehicle Platform</label>
+                <select id="vehicleSelect">
+                    <option value="compact" data-alternator="110">Compact Hatchback (Stock 110A Alternator)</option>
+                    <option value="sedan" data-alternator="150" selected>Mid-Size Sedan (Stock 150A Alternator)</option>
+                    <option value="suv" data-alternator="220">Full-Size SUV / Truck (Stock 220A Alternator)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="subSelect">Subwoofer Setup</label>
+                <select id="subSelect">
+                    <option value="none" data-rms="0" data-ohms="0">None</option>
+                    <option value="single10" data-rms="500" data-ohms="1">Single 10" Subwoofer (500W RMS)</option>
+                    <option value="dual12" data-rms="1200" data-ohms="1">Dual 12" Subwoofers (1200W RMS)</option>
+                    <option value="competition" data-rms="3000" data-ohms="0.5">Competition Monster 15" (3000W RMS)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ampSelect">Amplifier Class & Power</label>
+                <select id="ampSelect">
+                    <option value="none" data-draw="0">None</option>
+                    <option value="monoblock4ch" data-draw="45">Class A/B 4-Channel + Mono (45A Max Draw)</option>
+                    <option value="monoblock1500" data-draw="100">Class D Monoblock 1500W (100A Max Draw)</option>
+                    <option value="monoblock3000" data-draw="250">Competition Monoblock 3000W+ (250A Max Draw)</option>
+                </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="agmBattery"> Add Secondary AGM Battery / LTO Bank
+                </label>
+            </div>
+
+            <button id="resetBtn" class="btn-secondary">Reset System</button>
+        </section>
+
+        <!-- Real-Time Metrics & System Health Dashboard -->
+        <section class="panel metrics-panel">
+            <h2>System Diagnostic Output</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">Total RMS Power</span>
+                    <span id="totalRms" class="metric-value">0 W</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Est. Peak Current Draw</span>
+                    <span id="totalCurrent" class="metric-value">0 A</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Electrical Load Status</span>
+                    <span id="loadStatus" class="metric-value status-safe">Optimal</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Recommended Fuse / Wire</span>
+                    <span id="wireRec" class="metric-value">4 AWG OFC</span>
+                </div>
+            </div>
+
+            <div class="terminal-log">
+                <h3>Live Engineering Log</h3>
+                <div id="logContent" class="log-box">
+                    > System initialized. Awaiting configuration parameters...
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
